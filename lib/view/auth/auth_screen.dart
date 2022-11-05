@@ -144,10 +144,16 @@ class AuthScreen extends StatelessWidget {
                               hint: "Password",
                             ),
                             AppSpacing.kHeight10,
-                            CustomButtonWidget(
-                              text: "Sign In",
-                              onTap: () {},
-                            )
+                            authController.isLoading.value
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : CustomButtonWidget(
+                                    text: "Sign In",
+                                    onTap: () {
+                                      authController.signIn();
+                                    },
+                                  )
                           ],
                         ),
                       ),

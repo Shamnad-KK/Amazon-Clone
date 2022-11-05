@@ -33,8 +33,9 @@ dependencies:
   dio: 4.0.6
   flutter:
     sdk: flutter
-  get: 4.6.5
   fluttertoast: 8.1.1
+  get: 4.6.5
+  shared_preferences: 2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0

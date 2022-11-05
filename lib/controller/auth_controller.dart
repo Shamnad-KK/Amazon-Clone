@@ -1,12 +1,16 @@
+import 'dart:convert';
 import 'dart:developer';
 
+import 'package:amazon_clone/common/utils/app_popups.dart';
 import 'package:amazon_clone/model/auth_model.dart';
+import 'package:amazon_clone/routes/route_names.dart';
 import 'package:amazon_clone/services/auth_services.dart';
 import 'package:amazon_clone/view/auth/utils/auth_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
+  AuthServices authServices = AuthServices();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -27,14 +31,48 @@ class AuthController extends GetxController {
       name: nameController.text,
       email: emailController.text,
       password: passwordController.text,
+      type: "user",
+      id: '',
+      address: '',
+      token: '',
     );
     log(signUpModel.toJson().toString());
-    AuthServices().signUp(signUpModel).then((value) {
+    authServices.signUp(signUpModel).then((value) {
+      isLoading.value = false;
       if (value != null) {
         log("signed up");
       }
     });
     isLoading.value = false;
+  }
+
+  void signIn() async {
+    isLoading.value = true;
+    await authServices
+        .signIn(
+      emailController.text,
+      passwordController.text,
+    )
+        .then(
+      (value) {
+        if (value != null) {
+          isLoading.value = false;
+          AppPopUps.showToast(value, Colors.green);
+        }
+      },
+    );
+    isLoading.value = false;
+  }
+
+  void getUserData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    authServices.getUserData().then(
+      (value) {
+        if (value != null) {
+          Get.offAllNamed(RouteNames.homeScreen);
+        }
+      },
+    );
   }
 
   String? usernameValidation(String? value) {

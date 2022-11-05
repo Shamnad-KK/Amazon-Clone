@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           )),
       debugShowCheckedModeBanner: false,
       getPages: AppRoutes.getAppRoutes(),
-      initialRoute: RouteNames.authScreen,
+      initialRoute: RouteNames.splashScreen,
     );
   }
 }
