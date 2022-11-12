@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -9,6 +10,10 @@ import 'package:flutter/services.dart';
 class AppExceptions {
   static void handleError(Object exception) {
     if (exception is DioError) {
+      // if (exception.response?.data is bool) {
+      //   log("is bool");
+      //   return;
+      // }
       if (exception.response?.data['message'] != null) {
         AppPopUps.showToast(
           exception.response!.data["message"],
@@ -32,6 +37,8 @@ class AppExceptions {
         AppPopUps.showToast("Error occured", Colors.red);
       }
     } else if (exception is PlatformException) {
+      log(exception.message.toString());
+    } else if (exception is TimeoutException) {
       log(exception.message.toString());
     } else {
       AppPopUps.showToast(exception.toString(), Colors.red);

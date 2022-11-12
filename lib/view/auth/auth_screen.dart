@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:amazon_clone/common/widgets/custom_button.dart';
-import 'package:amazon_clone/common/widgets/custom_text_field.dart';
+import 'package:amazon_clone/view/widgets/custom_button.dart';
+import 'package:amazon_clone/view/widgets/custom_text_field.dart';
 import 'package:amazon_clone/controller/auth_controller.dart';
 import 'package:amazon_clone/helpers/app_colors.dart';
 import 'package:amazon_clone/helpers/app_padding.dart';

@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:amazon_clone/common/utils/app_popups.dart';
-import 'package:amazon_clone/model/auth_model.dart';
+import 'package:amazon_clone/model/user_model.dart';
 import 'package:amazon_clone/routes/route_names.dart';
 import 'package:amazon_clone/services/auth_services.dart';
 import 'package:amazon_clone/view/auth/utils/auth_utils.dart';
@@ -18,6 +17,21 @@ class AuthController extends GetxController {
   RxBool isSignUp = true.obs;
   RxBool isLoading = false.obs;
 
+  UserModel user = UserModel(
+    name: '',
+    email: '',
+    password: '',
+    id: '',
+    address: '',
+    type: '',
+    token: '',
+  );
+
+  void setUser(UserModel newUser) {
+    user = newUser;
+    update();
+  }
+
   void changeRadio(AuthEnum newEnum) {
     auth.value = newEnum;
 
@@ -27,7 +41,7 @@ class AuthController extends GetxController {
 
   void signUp() async {
     isLoading.value = true;
-    final signUpModel = SignUpModel(
+    final user = UserModel(
       name: nameController.text,
       email: emailController.text,
       password: passwordController.text,
@@ -36,8 +50,8 @@ class AuthController extends GetxController {
       address: '',
       token: '',
     );
-    log(signUpModel.toJson().toString());
-    authServices.signUp(signUpModel).then((value) {
+    log(user.toJson().toString());
+    authServices.signUp(user).then((value) {
       isLoading.value = false;
       if (value != null) {
         log("signed up");
@@ -48,28 +62,31 @@ class AuthController extends GetxController {
 
   void signIn() async {
     isLoading.value = true;
-    await authServices
-        .signIn(
+    final value = await AuthServices().signIn(
       emailController.text,
       passwordController.text,
-    )
-        .then(
-      (value) {
-        if (value != null) {
-          isLoading.value = false;
-          AppPopUps.showToast(value, Colors.green);
-        }
-      },
     );
+
+    if (value != null) {
+      isLoading.value = false;
+      await Get.offAllNamed(RouteNames.bottomNavBar);
+      AppPopUps.showToast(value, Colors.green);
+    }
     isLoading.value = false;
   }
 
   void getUserData() async {
     await Future.delayed(const Duration(seconds: 2));
-    authServices.getUserData().then(
-      (value) {
+    await authServices.getUserData().then(
+      (value) async {
         if (value != null) {
-          Get.offAllNamed(RouteNames.homeScreen);
+          setUser(value);
+          log(user.toJson().toString());
+          if (user.token != '') {
+            await Get.offAllNamed(RouteNames.bottomNavBar);
+          }
+        } else {
+          await Get.offNamed(RouteNames.authScreen);
         }
       },
     );
