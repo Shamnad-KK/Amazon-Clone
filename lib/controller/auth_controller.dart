@@ -82,8 +82,12 @@ class AuthController extends GetxController {
         if (value != null) {
           setUser(value);
           log(user.toJson().toString());
-          if (user.token != '') {
-            await Get.offAllNamed(RouteNames.bottomNavBar);
+          if (user.token!.isNotEmpty) {
+            if (user.type == 'user') {
+              await Get.offAllNamed(RouteNames.bottomNavBar);
+            } else {
+              await Get.offAllNamed(RouteNames.adminBottomNavBar);
+            }
           }
         } else {
           await Get.offNamed(RouteNames.authScreen);

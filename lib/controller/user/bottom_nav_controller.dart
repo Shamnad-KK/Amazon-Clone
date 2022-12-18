@@ -1,5 +1,5 @@
-import 'package:amazon_clone/view/accounts/accounts_screen.dart';
-import 'package:amazon_clone/view/home/home_screen.dart';
+import 'package:amazon_clone/view/user/accounts/accounts_screen.dart';
+import 'package:amazon_clone/view/user/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

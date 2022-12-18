@@ -1,8 +1,8 @@
 import 'package:amazon_clone/helpers/app_colors.dart';
 import 'package:amazon_clone/helpers/app_spacing.dart';
-import 'package:amazon_clone/view/accounts/widgets/account_top_buttons.dart';
-import 'package:amazon_clone/view/accounts/widgets/orders_widget.dart';
-import 'package:amazon_clone/view/accounts/widgets/user_greeting_widget.dart';
+import 'package:amazon_clone/view/user/accounts/widgets/account_top_buttons.dart';
+import 'package:amazon_clone/view/user/accounts/widgets/orders_widget.dart';
+import 'package:amazon_clone/view/user/accounts/widgets/user_greeting_widget.dart';
 import 'package:flutter/material.dart';
 
 class AccountsScreen extends StatelessWidget {

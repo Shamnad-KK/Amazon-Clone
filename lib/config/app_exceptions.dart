@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:amazon_clone/common/utils/app_popups.dart';
+import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +22,7 @@ class AppExceptions {
         );
       } else if (exception.error is SocketException) {
         AppPopUps.showToast("Please check your connection", Colors.red);
+        return;
       } else if (exception.error is PlatformException) {
         AppPopUps.showToast("Platform Exception", Colors.red);
       } else if (exception.type == DioErrorType.cancel) {
@@ -40,7 +42,10 @@ class AppExceptions {
       log(exception.message.toString());
     } else if (exception is TimeoutException) {
       log(exception.message.toString());
+    } else if (exception is CloudinaryException) {
+      log(exception.message.toString());
     } else {
+      log('I am here');
       AppPopUps.showToast(exception.toString(), Colors.red);
       log(exception.toString());
     }

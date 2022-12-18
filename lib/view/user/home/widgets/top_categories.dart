@@ -10,7 +10,7 @@ class TopCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.1,
+      height: size.height * 0.11,
       color: Colors.white,
       child: ListView.builder(
         shrinkWrap: true,

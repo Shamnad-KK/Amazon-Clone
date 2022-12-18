@@ -1,7 +1,7 @@
 import 'package:amazon_clone/helpers/app_colors.dart';
 import 'package:amazon_clone/helpers/app_padding.dart';
 import 'package:amazon_clone/helpers/app_spacing.dart';
-import 'package:amazon_clone/view/widgets/single_product.dart';
+import 'package:amazon_clone/view/user/widgets/single_product.dart';
 import 'package:flutter/cupertino.dart';
 
 class OrdersWidget extends StatelessWidget {

@@ -17,4 +17,5 @@ class AppColors {
   static const unselectedNavBarColor = Colors.black87;
   static const appbarIconColor = Colors.black;
   static const black = Colors.black;
+  static const successColor = Colors.green;
 }

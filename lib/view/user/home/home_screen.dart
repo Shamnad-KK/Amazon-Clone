@@ -1,12 +1,12 @@
 import 'package:amazon_clone/helpers/app_spacing.dart';
-import 'package:amazon_clone/view/home/widgets/address_box.dart';
-import 'package:amazon_clone/view/home/widgets/carousel_images.dart';
-import 'package:amazon_clone/view/home/widgets/deal_of_day.dart';
-import 'package:amazon_clone/view/home/widgets/top_categories.dart';
-import 'package:amazon_clone/view/widgets/custom_text_field.dart';
+import 'package:amazon_clone/view/user/home/widgets/address_box.dart';
+import 'package:amazon_clone/view/user/home/widgets/carousel_images.dart';
+import 'package:amazon_clone/view/user/home/widgets/deal_of_day.dart';
+import 'package:amazon_clone/view/user/home/widgets/top_categories.dart';
+import 'package:amazon_clone/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-import '../../helpers/app_colors.dart';
+import '../../../helpers/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -64,17 +64,19 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          AddressBox(),
-          AppSpacing.kHeight10,
-          TopCategories(),
-          AppSpacing.kHeight10,
-          CarouselImgaes(),
-          AppSpacing.kHeight10,
-          DealOfTheDay(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            AddressBox(),
+            AppSpacing.kHeight10,
+            TopCategories(),
+            AppSpacing.kHeight10,
+            CarouselImgaes(),
+            AppSpacing.kHeight10,
+            DealOfTheDay(),
+          ],
+        ),
       ),
     );
   }

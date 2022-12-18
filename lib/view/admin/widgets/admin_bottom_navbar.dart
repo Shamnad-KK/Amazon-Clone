@@ -1,21 +1,55 @@
 import 'dart:developer';
 
-import 'package:amazon_clone/controller/bottom_nav_controller.dart';
-import 'package:amazon_clone/helpers/app_colors.dart';
-import 'package:amazon_clone/helpers/app_widget_sizes.dart';
-import 'package:badges/badges.dart';
+import 'package:amazon_clone/controller/admin/admin_bottomnav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({super.key});
+import '../../../helpers/app_colors.dart';
+import '../../../helpers/app_widget_sizes.dart';
+
+class AdminBottomNavBar extends StatelessWidget {
+  const AdminBottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BottomNavController bottomNavController = Get.find();
+    final size = MediaQuery.of(context).size;
+    AdminBottomNavController adminBottomNavController = Get.find();
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppColors.appBarGradient,
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: size.width * 0.3,
+                  height: size.height * 0.1,
+                  child: Image.asset(
+                    "assets/images/amazon_in.png",
+                    color: AppColors.black,
+                  ),
+                ),
+              ),
+              const Text(
+                'Admin',
+                style: TextStyle(
+                    color: AppColors.black, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      ),
       body: Obx(
-        () => bottomNavController.pages[bottomNavController.currentIndex.value],
+        () => adminBottomNavController
+            .pages[adminBottomNavController.currentIndex.value],
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
@@ -32,7 +66,7 @@ class BottomNavBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     top: BorderSide(
-                      color: bottomNavController.currentIndex.value == 0
+                      color: adminBottomNavController.currentIndex.value == 0
                           ? AppColors.selectedNavBarColor
                           : AppColors.backgroundColor,
                       width: AppWidgetSizes.bottomBarBorderWidth,
@@ -44,7 +78,7 @@ class BottomNavBar extends StatelessWidget {
                 ),
               ),
             ),
-            //Account
+            //Analytics
             BottomNavigationBarItem(
               label: '',
               icon: Container(
@@ -52,7 +86,7 @@ class BottomNavBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     top: BorderSide(
-                      color: bottomNavController.currentIndex.value == 1
+                      color: adminBottomNavController.currentIndex.value == 1
                           ? AppColors.selectedNavBarColor
                           : AppColors.backgroundColor,
                       width: AppWidgetSizes.bottomBarBorderWidth,
@@ -60,11 +94,11 @@ class BottomNavBar extends StatelessWidget {
                   ),
                 ),
                 child: const Icon(
-                  Icons.person_outline_outlined,
+                  Icons.analytics_outlined,
                 ),
               ),
             ),
-            //Cart
+            //Orders
             BottomNavigationBarItem(
               label: '',
               icon: Container(
@@ -72,25 +106,22 @@ class BottomNavBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     top: BorderSide(
-                      color: bottomNavController.currentIndex.value == 2
+                      color: adminBottomNavController.currentIndex.value == 2
                           ? AppColors.selectedNavBarColor
                           : AppColors.backgroundColor,
                       width: AppWidgetSizes.bottomBarBorderWidth,
                     ),
                   ),
                 ),
-                child: Badge(
-                  elevation: 0,
-                  badgeContent: const Text('2'),
-                  badgeColor: AppColors.whiteColor,
-                  child: const Icon(Icons.shopping_cart_outlined),
+                child: const Icon(
+                  Icons.all_inbox_outlined,
                 ),
               ),
             ),
           ],
           onTap: (value) {
             log(value.toString());
-            bottomNavController.setIndex(value);
+            adminBottomNavController.setIndex(value);
           },
         ),
       ),

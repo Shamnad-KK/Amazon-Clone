@@ -71,9 +71,7 @@ class CustomTextField extends StatelessWidget {
         fillColor: fillColor,
         // errorStyle: AppTextStyle.validatorStyle,
         border: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: AppColors.black,
-            ),
+            borderSide: const BorderSide(color: AppColors.black, width: 0.8),
             borderRadius: BorderRadius.circular(isSearchField ? 30 : 5)),
         //   focusedBorder: OutlineInputBorder(
         //       borderSide: const BorderSide(
@@ -81,9 +79,7 @@ class CustomTextField extends StatelessWidget {
         //       ),
         //       borderRadius: BorderRadius.circular(isSearchField ? 30 : 5)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: AppColors.black,
-            ),
+            borderSide: const BorderSide(color: AppColors.black, width: 0.8),
             borderRadius: BorderRadius.circular(isSearchField ? 30 : 5)),
         // ),
       ),

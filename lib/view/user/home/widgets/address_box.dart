@@ -2,17 +2,15 @@ import 'package:amazon_clone/helpers/app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/auth_controller.dart';
+import '../../../../controller/auth_controller.dart';
 
 class AddressBox extends StatelessWidget {
   const AddressBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final user = Get.find<AuthController>().user;
     return Container(
-      height: size.height * 0.04,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -22,7 +20,7 @@ class AddressBox extends StatelessWidget {
           stops: [0.5, 1.0],
         ),
       ),
-      padding: AppPadding.allside10,
+      padding: AppPadding.mainPading,
       child: Row(
         children: [
           const Icon(
